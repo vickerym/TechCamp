@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Student</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ student.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ student.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ student.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Gradelevel</th>
+                <td>{{ student.gradeLevel }}</td>
+            </tr>
+            <tr>
+                <th>Schoolname</th>
+                <td>{{ student.schoolName }}</td>
+            </tr>
+            <tr>
+                <th>Ethnicity</th>
+                <td>{{ student.ethnicity }}</td>
+            </tr>
+            <tr>
+                <th>Shirtsize</th>
+                <td>{{ student.shirtSize }}</td>
+            </tr>
+            <tr>
+                <th>Can Pick Up</th>
+                <td>{{ student.canPickUp }}</td>
+            </tr>
+            <tr>
+                <th>Can Pick Up 2</th>
+                <td>{{ student.canPickUp2 }}</td>
+            </tr>
+            <tr>
+                <th>Can Not Pick Up</th>
+                <td>{{ student.canNotPickUp }}</td>
+            </tr>
+            <tr>
+                <th>Can Not Pick Up2</th>
+                <td>{{ student.canNotPickUp2 }}</td>
+            </tr>
+            <tr>
+                <th>Emergency Name</th>
+                <td>{{ student.emergencyName }}</td>
+            </tr>
+            <tr>
+                <th>Relationship</th>
+                <td>{{ student.relationship }}</td>
+            </tr>
+            <tr>
+                <th>Emergency Number</th>
+                <td>{{ student.emergencyNumber }}</td>
+            </tr>
+            <tr>
+                <th>Emergency Number</th>
+                <td>{{ student.emergencyAdditionalPhone }}</td>
+            </tr>
+            <tr>
+                <th>Emergency Number 2</th>
+                <td>{{ student.emergencyAdditionalComments }}</td>
+            </tr>
+            <tr>
+                <th>Emergency Additional Comments</th>
+                <td>{{ student.shirtSize }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+			<a href={{path('techcamp_default_application')}}>Return to Application</a>
+        </li>
+    </ul>
+{% endblock %}

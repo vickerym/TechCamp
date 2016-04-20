@@ -1,0 +1,4 @@
+services:
+#    techcamp.example:
+#        class: techcampBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

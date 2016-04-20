@@ -1,0 +1,39 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block nav %}
+<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li><a href={{path('homepage')}}>Home</a></li>
+				<li class="current"><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block body %}
+	<br>
+	<br>
+	<div class="subtitle">
+		<h1>You must click submit in order for your application to be processed</h1>
+	</div>
+	<br>
+		<label>Chosen Camp: </label><h2>&nbsp;&nbsp;{{camp.campName}}</h2>
+	<br>
+
+		<label>Selected Student: </label><h2>&nbsp;&nbsp{{student.firstName}} &nbsp;{{student.lastName}}</h2>
+	 
+	<br>
+	<br>
+		    {{ form_start(form) }}
+		        <input type="submit" value="Submit" />
+		    {{ form_end(form) }}
+
+	
+	
+{% endblock %}

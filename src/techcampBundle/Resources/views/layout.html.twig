@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        
+        {% block javascripts %}
+        	<script src="{{ asset('bundles/techcamp/js/jquery.easing.1.3.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/jquery.equalheights.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/jquery.iosslider.min.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/jquery.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/jquery.mobilemenu.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/jquery.ui.totop.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/jquery-migrate-1.2.1.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/classie.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/html5shiv.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/modernizr.custom.97074.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/PIE.htc') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/PIE.php') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/script.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/sForm.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/superfish.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/TMForm.js') }}"></script>
+			<script src="{{ asset('bundles/techcamp/js/touchTouch.jquery.js') }}"></script>
+	    {% endblock %}
+	    
+	    {% block image %}{% endblock %}
+	    
+	    {% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/font-awesome.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/form.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/grid.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/ie.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/reset.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/slider.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/style.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/superfish.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/thumbs.css') }}" />
+			<link rel="stylesheet" href="{{ asset('bundles/techcamp/css/touchTouch.css') }}" />
+        {% endblock %}
+	</head>
+   	
+<body> 
+    	
+    	
+    	<!--==============================header=================================-->
+<header>
+	<div class="container_12">
+		<div class="grid_12">
+			{% for type, messages in app.session.flashBag.all %}
+    			{% for message in messages %}
+        			<div class="{{ type }}">
+           				{{ message|trans({}, 'FOSUserBundle') }}
+        			</div>
+    			{% endfor %}
+			{% endfor %}
+
+			<div class="loginButton">
+    			{% block fos_user_content %}
+        			{% if app.user %}
+        	 			<div>
+	    					<a href="{{ path('fos_user_security_logout') }}">Logout</a>
+	    				</div>
+	 				{% else %}
+	 					<div>
+	    					{{ render(controller('techcampBundle:Default:loginWidget' )) }}
+	    					<a href="{{ path('fos_user_registration_register') }}">Register</a>
+	    				</div>
+	 				{% endif %}		
+    			{% endblock fos_user_content %}
+			</div>
+			<h1>
+				<div id="titles">
+					<div id="title1"> Winthrop University</div>
+					<div id="title2">Summer Computing Camps</div>
+					
+					<!---
+					<a href="index.html">
+							<img src="{{ asset('bundles/techcamp/images/logo.png') }}" alt="Your Happy Family" />
+					</a>
+					--->					
+				</div>
+			</h1>
+			<div class="menu_block ">
+				<div id="donate" >       
+						<img id="one" src="{{ asset('bundles/techcamp/images/winthrop_logo.png') }}" alt="Winthrop Logo" />
+		
+						<img id="two" src="{{ asset('bundles/techcamp/images/stars_logo.png') }}" alt="Winthrop Logo" />	
+				</div>
+				
+				{% block nav %}
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</header>
+    	
+    	
+    <!--============================end header=============================================-->	
+    	
+
+ 		
+ 		
+ 	  
+ 		
+ 		
+ 		
+{% block body %}{% endblock %}
+ 		
+ 		
+ 		
+    	
+
+
+    </body>
+</html>

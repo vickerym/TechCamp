@@ -1,0 +1,48 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block nav %}
+	<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li><a href={{path('homepage')}}>Home</a></li>
+				<li class="current"><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block body %}
+	<body class="" id="top">
+
+<!--==============================Content=================================-->
+{% if app.user %}	
+	<div class="content">
+		<div class="container_12">
+			<h2>Select the Camp you wish to apply for:</h2>
+			<br>
+			{% for camp in camps %}
+				<ul>	
+					<li><a href="application/{{camp.id}}">{{ camp.campName }}</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Camp Dates: </label> {{ camp.campDates }}</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Camp Price: </label> {{ camp.campPrice }}</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Grade Level: </label> {{ camp.campGradeLevel }}</a></li>
+				</ul>
+				<br>
+			{% endfor %}
+		</div>
+	</div>
+{% else %}
+	<div>
+		<p>To register for a camp you must first register with the site. The information provided will be used to populate the application form </p>
+	</div>
+{% endif %}
+
+			
+
+	
+{% endblock %}

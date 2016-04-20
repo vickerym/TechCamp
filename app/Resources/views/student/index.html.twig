@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Student list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Gradelevel</th>
+                <th>Schoolname</th>
+                <th>Ethnicity</th>
+                <th>Shirtsize</th>
+                <th>canPickUp</th>
+                <th>canPickUp2</th>
+                <th>canNotPickUp</th>
+                <th>canNotPickUp2</th>
+                <th>emergencyName</th>
+                <th>relationship</th>
+                <th>emergencyNumber</th>
+                <th>emergencyAdditionalPhone</th>
+                <th>emergencyAdditionalComments</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td><a href="{{ path('user_student_show', { 'id': student.id }) }}">{{ student.id }}</a></td>
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
+                <td>{{ student.gradeLevel }}</td>
+                <td>{{ student.schoolName }}</td>
+                <td>{{ student.ethnicity }}</td>
+                <td>{{ student.shirtSize }}</td>
+                <td>{{ student.canPickUp }}</td>
+                <td>{{ student.canPickUp2 }}</td>
+                <td>{{ student.canNotPickUp }}</td>
+                <td>{{ student.canNotPickUp2 }}</td>
+                <td>{{ student.emergencyName }}</td>
+                <td>{{ student.relationship }}</td>
+                <td>{{ student.emergencyNumber }}</td>
+                <td>{{ student.emergencyAdditionalPhone }}</td>
+                <td>{{ student.emergencyAdditionalComments }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_student_edit', { 'id': student.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_student_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

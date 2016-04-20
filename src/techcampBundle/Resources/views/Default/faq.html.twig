@@ -1,0 +1,81 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block nav %}
+	<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li><a href={{path('homepage')}}>Home</a></li>
+				<li><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li class="current"><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block body %}
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ1'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/3/edit">Edit</a></button>
+	{% endif %}
+</div>
+<br>
+<br>
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ2'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/6/edit">Edit</a></button>
+	{% endif %}
+</div>
+<br>
+<br>
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ3'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/7/edit">Edit</a></button>
+	{% endif %}
+</div>
+<br>
+<br>
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ4'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/8/edit">Edit</a></button>
+	{% endif %}
+</div>
+<br>
+<br>
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ5'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/9/edit">Edit</a></button>
+	{% endif %}
+</div>
+<br>
+<br>
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ6'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/10/edit">Edit</a></button>
+	{% endif %}
+</div>
+<br>
+<br>
+<div>		
+	{{ render(controller('techcampBundle:Default:displayPage', {'page':'FAQ7'} )) }} 
+	{% if is_granted("ROLE_SUPER_ADMIN") %}
+		<button><a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/11/edit">Edit</a></button>
+	{% endif %}
+</div>
+
+
+
+
+
+
+
+{% endblock %}

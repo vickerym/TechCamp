@@ -1,0 +1,59 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block nav %}
+	<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li><a href={{path('homepage')}}>Home</a></li>
+				<li class="current"><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block body %}
+	<body class="" id="top">
+
+<!--==============================Content=================================-->
+{% if app.user %}	
+	<div class="content">
+		<div class="container_12">		
+		
+			<h3>Student Not Listed?</h3>
+			<h4>Add a New Student!</h4>
+			<button><a href="{{path('user_student_new' ) }}">New Student</a></button>
+			<br>
+			<br>
+			<h2>Select the Child for Whom You Are Applying:</h2>
+			<br>
+			{% for student in students %}
+				<ul>
+					<li><a href="{{path('techcamp_default_applicationphase3', {'camp':camp.id, 'id':student.id})}}"><label>Student Name: </label>{{ student.firstName }} {{ student.lastName }}</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Student Grade Level: </label> {{ student.gradeLevel }}</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Student Shirt Size: </label> {{ student.shirtSize }}</a></li>	
+					<br>		
+					<label>Wrong Info?</label>
+					<button><a href="{{path('user_student_edit', {'id':student.id} ) }}">Update Info</a></button>
+	                												
+				</ul>
+				<br>
+			{% endfor %}
+
+			
+		</div>
+	</div>
+{% else %}
+	<div>
+		<p>You must be logged in to be able to register for a camp</p>
+	</div>
+{% endif %}
+
+			
+
+	
+{% endblock %}

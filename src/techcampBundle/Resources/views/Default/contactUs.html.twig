@@ -1,0 +1,53 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block nav %}
+	<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li><a href={{path('homepage')}}>Home</a></li>
+				<li><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li class="current"><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+	
+{% block body %}	
+		<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - March 24, 2014!</div>
+			<div class="container_12">
+				<div class="grid_12">
+					<h2>Find Us</h2>
+					<div class="map">
+						<figure class="">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3270.7464101455316!2d-81.03395462011918!3d34.937896378081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x885688eebcbb3453%3A0x9bab0a925e7fad55!2sWinthrop+University!5e0!3m2!1sen!2sus!4v1459168245213" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</figure>
+						<div class="grid_4 alpha">
+							<h2>Address:</h2>
+							<address>
+								<span class="fa fa-home"></span>
+								701 Oakland Ave <br>
+								Rock Hill <br>
+								South Carolina 29733
+							</address>
+						</div>
+						<div class="grid_4">
+							<h2>Phones:</h2>
+							<div class="m_phone">
+								<div class="fa fa-phone"></div>
+								+1 (803) 323-2692
+							</div>
+						</div>
+						<div class="grid_4 omega">
+							<h2>Email:</h2>
+							<a href="#"><span class="fa fa-envelope-o"></span> domanm@winthrop.edu</a>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}

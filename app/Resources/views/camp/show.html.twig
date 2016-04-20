@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Camp</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Campname</th>
+                <td>{{ camp.campName }}</td>
+            </tr>
+            <tr>
+                <th>Campdescription</th>
+                <td>{{ camp.campDescription }}</td>
+            </tr>
+            <tr>
+                <th>Campdates</th>
+                <td>{{ camp.campDates }}</td>
+            </tr>
+            <tr>
+                <th>Campgradelevel</th>
+                <td>{{ camp.campGradeLevel }}</td>
+            </tr>
+            <tr>
+                <th>Campprice</th>
+                <td>{{ camp.campPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_camp_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_camp_edit', { 'id': camp.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

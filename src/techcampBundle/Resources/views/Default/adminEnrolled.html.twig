@@ -1,0 +1,53 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block nav %}
+	<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li><a href={{path('homepage')}}>Home</a></li>
+				<li><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li class="current"><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block body %}
+{% if is_granted("ROLE_SUPER_ADMIN") %}
+<div>
+	<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+		<ul class="sf-menu">
+			<li><a href="admin_camp_display">Camps</a></li>
+			<li><a href="adminUnreviewed">Accepted Campers</a></li>
+			<li class="current"><a href="adminEnrolled">Submitted Applications</a></li>
+		</ul>
+	</nav>
+</div>
+<br>
+<br>
+
+{% for application in applications %}
+
+        <div> 
+			<label>Student Name: </label><h2 class="subtitle"><a href="{{path('admin_application_show', {'id':application.id} ) }}">{{ application.student.firstName }} {{ application.student.lastName }}</h2>
+		</div>
+		<div class="clear"></div>
+		<div>
+			<label>Camp Desired: </label><h2 class="subtitle">{{ application.camp }}</h2>
+		</div>
+	<br>
+	<br>
+{% endfor %}
+
+
+{% else %}
+	<p> You don't have access to view this page </p>
+{% endif %}
+
+
+
+{% endblock %}

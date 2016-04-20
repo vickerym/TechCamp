@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Camp list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Camp Name</th>
+                <th>Camp Description</th>
+                <th>Camp Dates</th>
+                <th>Camp Grade Level</th>
+                <th>Camp Price</th>
+                <th>Displayed?</th>
+                <th>Num Registered </th>
+                <th>Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for camp in camps %}
+            <tr>
+                <td>{{ camp.campName }}</td>
+                <td>{{ camp.campDescription }}</td>
+                <td>{{ camp.campDates }}</td>
+                <td>{{ camp.campGradeLevel }}</td>
+                <td>{{ camp.campPrice }}</td>
+                <td>{{ camp.displayedOnHome }}</td>
+                <td> {{ camp.applications | length }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_camp_edit', { 'id': camp.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <button><a href="{{ path('admin_camp_new') }}">Create a new camp</a></button>
+        </li>
+    </ul>
+{% endblock %}

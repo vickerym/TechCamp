@@ -1,0 +1,163 @@
+{% extends 'techcampBundle::layout.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript"src="{{ asset('bundles/techcamp/js/jquery.hoverdir.js') }}"></script>
+{% endblock %}
+
+{% block nav %}
+	<div class="clear"></div>
+		<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+			<ul class="sf-menu">
+				<li class="current"><a href={{path('homepage')}}>Home</a></li>
+				<li><a href={{path('techcamp_default_application')}}>Application</a></li>
+				<li><a href={{path('techcamp_default_faq')}}>FAQS</a></li>
+				<li><a href={{path('techcamp_default_contactus')}}>Contact Us</a></li>
+			{% if is_granted("ROLE_SUPER_ADMIN") %}
+				<li><a href={{path('techcamp_default_admin')}}>Admin</a></li>					
+			{% endif %}
+			</ul>
+		</nav>
+	<div class="clear"></div>
+{% endblock %}
+
+
+{% block body %}
+	
+	
+<div class="content">
+
+
+	<div class="container_12">
+
+<div class="camp_title">
+<span>Our Summer Camp offerings for 2016</span>
+</div>
+
+		<div id="slider0">
+        	<ul id="d-thumbs0">
+        		{% for camp in camps %}
+	        		<li>
+	                    <div class="headings1"> 
+							<h2 class="subtitle">{{ camp.campName }}</h2>
+								<ul class="head1">
+									<li><a>{{ camp.campDates }}</a></li>
+									<li><a>{{ camp.campPrice }}</a></li>
+									<li><a>{{ camp.campGradeLevel }}</a></li>
+								</ul>
+						</div>
+						
+						<div class="col2">
+							{{ camp.campDescription }}
+						</div>
+					</li>
+				{% endfor %}	
+			</ul>
+		</div>
+		<br>
+		<div class="container_12">
+		
+			<div class="camp_title">
+			<span>Application Process</span>
+			</div>
+
+			<div class="grid_9">			
+				<div class="grid_9_sub">
+				<br>
+					<section>
+						<ul id="da-thumbs" class="da-thumbs">
+							{% if is_granted("ROLE_SUPER_ADMIN") %}
+								{{ render(controller('techcampBundle:Default:displayPage', {'page':'applicationInstruct'} )) }}
+								<br/>
+								<a href="http://infd.birdnest.org/~acc.vickerym3/technoCamp/web/app_dev.php/admin/page/5/edit">Edit</a>
+							{% else %}
+								{{ render(controller('techcampBundle:Default:displayPage', {'page':'applicationInstruct'} )) }}
+							{% endif %}
+						</ul>
+					</section>	
+								
+				</div>	
+					
+				<div id="notices1">IMPORTANT NOTICE</div>
+				
+				<div id="notices2">
+				<section>
+				<ul class="d-thumbs2">
+				<li>
+				<a>Please note that not everyone that applies will be accepted into our summer camp programs. Camp selections are not done on a first come first served basis.</a>
+				</li>
+				<li>
+				<a>Limited financial aid will be available through the scholarship program. </a>
+				</li>
+				
+				</ul>
+				</section>
+				</div>
+							
+			</div>				
+		</div>
+	</div>
+</div>
+
+<script>	
+	$(document).ready(
+		function() {
+		 	$('.iosSlider').iosSlider({
+				desktopClickDrag: true,
+				snapToChildren: true,
+				navSlideSelector: '.sliderContainer .slideSelectors .item',
+				onSlideComplete: slideComplete,
+				onSliderLoaded: sliderLoaded,
+				onSlideChange: slideChange,
+				scrollbar: false,
+				autoSlide: true,
+				autoSlideTimer: 3300,
+				infiniteSlider: true
+		 	});
+		});		
+  
+		function slideChange(args) {
+			$('.sliderContainer .slideSelectors .item').removeClass('selected');
+			$('.sliderContainer .slideSelectors .item:eq(' + (args.currentSlideNumber - 1) + ')').addClass('selected');
+		}
+		
+		function slideComplete(args) {
+			if(!args.slideChanged) return false;
+			$(args.sliderObject).find('.text1, .text2').attr('style', '');
+			$(args.currentSlideObject).find('.text1').animate({
+				right: '100px',
+				opacity: '0.72'
+			}, 400, 'easeOutQuint');
+		
+			$(args.currentSlideObject).find('.text2').delay(200).animate({
+				right: '70px',
+				opacity: '0.72'
+			}, 400, 'easeOutQuint');
+		}
+		
+		function sliderLoaded(args) {
+			$(args.sliderObject).find('.text1, .text2').attr('style', '');
+			$(args.currentSlideObject).find('.text1').animate({
+				right: '100px',
+				opacity: '0.72'
+		 	}, 400, 'easeOutQuint');
+		 	
+		 	$(args.currentSlideObject).find('.text2').delay(200).animate({
+				right: '70px',
+				opacity: '0.72'
+		 	}, 400, 'easeOutQuint');
+			slideChange(args);
+		}
+		
+		$(function() {
+				$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
+		});
+
+</script>
+
+
+
+
+
+{% endblock %}
+

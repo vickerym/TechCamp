@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Application</h1>
+
+	<label>Parent Name: </label> {{ application.student.user.firstName}} {{ application.student.user.lastName}}
+	<br>
+	<label>Parent Email: </label> {{ application.student.user.email }}
+	<br>
+
+    <label>Contact Number: </label> {{ application.student.user.phoneNumber }}
+    <br>
+    <label>Contact Address: </label> {{ application.student.user.streetName }}  &nbsp; {{ application.student.user.cityName }}, {{ application.student.user.stateName }} &nbsp; {{ application.student.user.zipCode }}
+    <br>
+    <br>
+    <label>Camp Selected: </label> {{ application.camp.campName }}
+    <br>
+    <label>Camp Dates: </label> {{ application.camp.campDates }}
+    <br>
+    <label>Camp Grade Level: </label> {{ application.camp.campGradeLevel }}
+    <br>
+    <br>
+    <label>Student Name: </label> {{ application.student.firstName}} {{ application.student.lastName}}
+    <br>
+    <label>Student Grade Level: </label {{ application.student.gradeLevel }}
+    <br>
+    <label>Student's School: </label> {{ application.student.schoolName }}
+    <br>
+    <label>Student Ethnicity: </label> {{ application.student.ethnicity }}
+    <br>
+    <label>Student Shirt Size: </label> {{ application.student.shirtSize }}
+    <br>
+    <label>Allowed to Pick Up:</label> {{ application.student.canPickUp }}
+    <br>
+    <label>Allowed to Pick Up:</label> {{ application.student.canPickUp2 }}
+    <br>
+    <br>
+    <label>Emergency Contact:</label> 
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label>Emergency Contact Name: {{ application.student.emergencyName }}
+    	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label>Emergency Contact Relationship: </label> {{ application.student.relationship }}
+    	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label>Emergency Contact Number: </label> {{ application.student.emergencyNumber }}
+    	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label>Emergency Contact Additional Number: </label> {{ application.student.emergencyAdditionalPhone }}
+    	<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<label>Emergency Contact Comments: </label> {{ application.student.emergencyAdditionalComments }}
+    
+    <br>
+    <br>
+    
+   {% if is_granted('ROLE_SUPER_ADMIN') %} 
+    	<button><a href="mailto:{{ application.student.user.email }}?Subject=Winthrop%20University%20Technology%20Summer%20Camp%20Application"target="_top">Email Applicant</a></button>
+   {% endif %}	
+    	
+    	
+
+    
+	<ul>
+		<li>
+			<a href={{path('techcamp_default_index')}}>Return to Site</a>	
+		</li>
+		{% if is_granted('ROLE_SUPER_ADMIN') %}
+			<li>
+				<a href={{path('techcamp_default_adminenrolled')}}>Return to Admin Portal</a>					
+			</li>
+			<li>
+				<a href={{path('admin_application_edit', {'id': application.id})}}>Remove From Submitted Applications</a>					
+			</li>
+		{% endif %}
+		
+	</ul>
+{% endblock %}
